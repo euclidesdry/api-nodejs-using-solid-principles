@@ -1,0 +1,24 @@
+{
+  "name": "api-nodejs-using-solid-principles",
+  "version": "1.0.0",
+  "description": "A GYM APP (API) with NodeJS Using Solid Principles",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Euclides do Rosário <@euclidesdry> (euclidesdry@gmail.com)",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.8",
+    "tsup": "^8.1.0",
+    "tsx": "^4.15.7",
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "fastify": "^4.28.0"
+  }
+}
