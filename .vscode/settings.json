@@ -1,4 +1,4 @@
 {
-  "conventionalCommits.scopes": ["app"],
+  "conventionalCommits.scopes": ["app", "lint"],
   "cSpell.words": ["fastify", "tsup"]
 }
