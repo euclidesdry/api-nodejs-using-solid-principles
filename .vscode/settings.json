@@ -1,5 +1,5 @@
 {
-  "conventionalCommits.scopes": ["app", "lint"],
+  "conventionalCommits.scopes": ["app", "lint", "db"],
   "cSpell.words": ["fastify", "tsup"],
   "[prisma]": {
     "editor.formatOnSave": true
