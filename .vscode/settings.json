@@ -5,7 +5,8 @@
     "db",
     "routes",
     "controllers",
-    "use-cases"
+    "use-cases",
+    "repositories"
   ],
   "cSpell.words": ["fastify", "tsup"],
   "[prisma]": {
