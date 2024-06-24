@@ -1,41 +1,61 @@
 import { expect, describe, it, beforeEach } from 'vitest'
 
-import { InMemoryCheckInsRepository } from '~/repositories/in-memory/in-memory-check-ins-repository';
+import { InMemoryGymsRepository } from '~/repositories/in-memory/in-memory-gyms-repository';
 
-import { GetUserMetricsUseCase } from './get-user-metrics';
+import { SearchGymsUseCase } from './search-gyms';
 
-const mockedCheckInData = {
-  gymId: 'gym-0',
-  userId: 'user-0',
-  userLatitude: -8.894794,
-  userLongitude: 13.195640,
+const submittedGymData = {
+  title: 'Javascript Gym',
+  description: 'Gym Description',
+  phone: '1234567890',
+  latitude: -8.8849738,
+  longitude: 13.3444658,
 }
 
-let checkInsRepository: InMemoryCheckInsRepository;
-let sut: GetUserMetricsUseCase;
+let gymsRepository: InMemoryGymsRepository;
+let sut: SearchGymsUseCase;
 
 
-describe('Get User Metrics Use Case', () => {
+describe('Search Gyms Use Case', () => {
   beforeEach(async () => {
-    checkInsRepository = new InMemoryCheckInsRepository();
-    sut = new GetUserMetricsUseCase(checkInsRepository);
+    gymsRepository = new InMemoryGymsRepository();
+    sut = new SearchGymsUseCase(gymsRepository);
   })
 
-  it('should be able to get check-in count from metrics', async () => {
-    const { gymId, userId } = mockedCheckInData
+  it('should be able to search for gyms', async () => {
 
-    await checkInsRepository.create({
-      gym_id: `${gymId}1`,
-      user_id: `${userId}1`,
+    await gymsRepository.create(submittedGymData)
+
+    await gymsRepository.create({
+      ...submittedGymData,
+      title: "Typescript Gym",
     })
 
-    await checkInsRepository.create({
-      gym_id: `${gymId}2`,
-      user_id: `${userId}1`,
+    const { gyms } = await sut.execute({
+      query: 'Javascript',
+      page: 1,
     })
 
-    const { checkInsCount } = await sut.execute({ userId: `${userId}1` })
+    expect(gyms).toHaveLength(1)
+    expect(gyms).toEqual([
+      expect.objectContaining({ title: submittedGymData.title }),
+    ])
+  })
 
-    expect(checkInsCount).toEqual(2)
+  it('should be able to fetch paginated check-in history', async () => {
+    for (let i = 1; i <= 22; i++) {
+      await gymsRepository.create({
+        ...submittedGymData,
+        title: `${submittedGymData.title} ${i}`,
+      })
+    }
+
+    const { gyms } = await sut.execute({ query: 'Javascript', page: 2 })
+
+    expect(gyms).toHaveLength(2)
+    expect(gyms).toEqual([
+      expect.objectContaining({ title: `${submittedGymData.title} 21` }),
+      expect.objectContaining({ title: `${submittedGymData.title} 22` }),
+    ])
   })
 })
