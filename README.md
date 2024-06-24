@@ -7,8 +7,8 @@ A GYM APP (API) with NodeJS Using Solid Principles
 ### FR (Functional Requirements)
 
 - [x] Should be possible for a user to create an account;
-- [ ] Should be possible for a user to authenticate;
-- [ ] Should be possible to get an authenticated user profile;
+- [x] Should be possible for a user to authenticate;
+- [x] Should be possible to get an authenticated user profile;
 - [ ] Should be possible to get several check-ins made by user;
 - [ ] should be possible to get the check-in history by user;
 - [ ] Should be possible to search for the closest GYM's;
@@ -29,6 +29,6 @@ A GYM APP (API) with NodeJS Using Solid Principles
 ### NFR (Non-Functional Requirements)
 
 - [x] User password must be encrypted;
-- [ ] App database must be persisted on a PostgreSQL database;
+- [x] App database must be persisted on a PostgreSQL database;
 - [ ] All data lists (on the API) must be paginated with a 20 items page;
 - [ ] User must be identified by a JWT (token)
