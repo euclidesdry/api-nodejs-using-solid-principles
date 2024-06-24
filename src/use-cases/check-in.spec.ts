@@ -7,7 +7,7 @@ import { InMemoryGymsRepository } from '~/repositories/in-memory/in-memory-gyms-
 import { CheckInUseCase } from './check-in';
 
 const mockedCheckInData = {
-  gymId: 'gym-id',
+  gymId: 'gym-id-1',
   userId: 'user-id',
   userLatitude: -8.894794,
   userLongitude: 13.195640,
@@ -97,5 +97,27 @@ describe('Check-in Use Case', () => {
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
+  })
+
+  it('should not be able to check-in on distant gyms', async () => {
+    const { gymId, userId, userLatitude, userLongitude } = mockedCheckInData
+
+    gymsRepository.items.push({
+      id: `${mockedCheckInData.gymId}2`,
+      phone: 'Gym Phone',
+      title: 'Javascript Gym',
+      description: 'Gym Description',
+      latitude: new Decimal(-8.8849738),
+      longitude: new Decimal(13.3444658),
+    })
+
+    await expect(() =>
+      sut.execute({
+        gymId: `${gymId}2`,
+        userId,
+        userLatitude,
+        userLongitude,
+      })
+    ).rejects.toBeInstanceOf(Error)
   })
 })
