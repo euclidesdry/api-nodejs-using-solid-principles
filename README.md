@@ -15,7 +15,7 @@ A GYM APP (API) with NodeJS Using Solid Principles
 - [ ] Should be possible to search by GYM's name;
 - [x] Should be possible to check in a GYM;
 - [ ] Should be possible to validate a specific user check-in;
-- [ ] Should be possible to create a GYM;
+- [x] Should be possible to create a GYM;
 
 ### BR (Business Rule)
 
