@@ -20,7 +20,7 @@ A GYM APP (API) with NodeJS Using Solid Principles
 ### BR (Business Rule)
 
 - [x] User should not create a GYM;
-- [ ] User should not check-in twice (2 times) in the same day;
+- [x] User should not check-in twice (2 times) in the same day;
 - [ ] User should not check in if he/she is not 100 meters near the GYM;
 - [ ] Check-in must be validated 20 minutes after being created only;
 - [ ] Check-in must be validated by an Admin only;
