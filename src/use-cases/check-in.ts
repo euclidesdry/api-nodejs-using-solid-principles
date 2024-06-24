@@ -14,13 +14,20 @@ type CheckInUseCaseResponse = {
 }
 
 export class CheckInUseCase {
-  constructor (private checkInsRepository: CheckInsRepository) {}
+  constructor(private checkInsRepository: CheckInsRepository) { }
 
-  async execute ({
+  async execute({
     userId,
     gymId
   }: CheckInUseCaseRequest): Promise<CheckInUseCaseResponse> {
-    // auth
+
+    const checkInOnSameDay = await this.checkInsRepository.findByUserIdOnGymId(
+      userId,
+      new Date()
+    )
+
+    if (checkInOnSameDay) throw new InvalidCredentialsError()
+
     const checkIn = await this.checkInsRepository.create({
       user_id: userId,
       gym_id: gymId

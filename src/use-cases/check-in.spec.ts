@@ -1,6 +1,5 @@
-import { expect, describe, it, beforeEach } from 'vitest'
+import { expect, describe, it, beforeEach, vi, afterEach } from 'vitest'
 
-import { InMemoryUsersRepository } from '~/repositories/in-memory/in-memory-users-repository';
 import { InMemoryCheckInsRepository } from '~/repositories/in-memory/in-memory-check-ins-repository';
 
 import { CheckInUseCase } from './check-in';
@@ -17,6 +16,12 @@ describe('Check-in Use Case', () => {
   beforeEach(async () => {
     checkInRepository = new InMemoryCheckInsRepository();
     sut = new CheckInUseCase(checkInRepository);
+
+    vi.useFakeTimers()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
   })
   
   it('should be able to check in', async () => {
@@ -31,6 +36,8 @@ describe('Check-in Use Case', () => {
   })
 
   it('should not be able to check in twice in the same gym', async () => {
+    vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
+    
     const { gymId, userId } = mockedCheckInData
 
     await sut.execute({

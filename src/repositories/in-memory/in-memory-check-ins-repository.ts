@@ -6,6 +6,16 @@ import { CheckInsRepository } from '../check-ins-repository';
 export class InMemoryCheckInsRepository implements CheckInsRepository {
   public items: CheckIn[] = []
 
+  async findByUserIdOnGymId(userId: string, date: Date): Promise<CheckIn | null> {
+    const checkOnSameDate = this.items.find(
+      (checkIn) => checkIn.user_id === userId,
+    )
+
+    if (!checkOnSameDate) return null
+
+    return checkOnSameDate
+  }
+
   async create (data: Prisma.CheckInUncheckedCreateInput): Promise<CheckIn> {
     const checkIn = {
       id: randomUUID(),
