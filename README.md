@@ -10,7 +10,7 @@ A GYM APP (API) with NodeJS Using Solid Principles
 - [x] Should be possible for a user to authenticate;
 - [x] Should be possible to get an authenticated user profile;
 - [ ] Should be possible to get several check-ins made by user;
-- [ ] should be possible to get the check-in history by user;
+- [x] should be possible to get the check-in history by user;
 - [ ] Should be possible to search for the closest GYM's;
 - [ ] Should be possible to search by GYM's name;
 - [x] Should be possible to check in a GYM;
