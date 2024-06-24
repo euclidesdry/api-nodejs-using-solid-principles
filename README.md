@@ -9,7 +9,7 @@ A GYM APP (API) with NodeJS Using Solid Principles
 - [x] Should be possible for a user to create an account;
 - [x] Should be possible for a user to authenticate;
 - [x] Should be possible to get an authenticated user profile;
-- [ ] Should be possible to get several check-ins made by user;
+- [x] Should be possible to get several check-ins made by user;
 - [x] should be possible to get the check-in history by user;
 - [ ] Should be possible to search for the closest GYM's;
 - [ ] Should be possible to search by GYM's name;
@@ -30,5 +30,5 @@ A GYM APP (API) with NodeJS Using Solid Principles
 
 - [x] User password must be encrypted;
 - [x] App database must be persisted on a PostgreSQL database;
-- [ ] All data lists (on the API) must be paginated with a 20 items page;
+- [x] All data lists (on the API) must be paginated with a 20 items page;
 - [ ] User must be identified by a JWT (token)
