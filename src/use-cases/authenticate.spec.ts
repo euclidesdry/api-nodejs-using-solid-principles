@@ -1,4 +1,4 @@
-import { expect, describe, it } from 'vitest'
+import { expect, describe, it, beforeEach } from 'vitest'
 import { hash } from 'bcryptjs';
 
 import { InMemoryUsersRepository } from '~/repositories/in-memory/in-memory-users-repository';
@@ -7,6 +7,9 @@ import { InvalidCredentialsError } from './errors/invalid-credentials-error';
 
 import { AuthenticateUseCase } from './authenticate';
 
+let usersRepository = new InMemoryUsersRepository();
+let sut = new AuthenticateUseCase(usersRepository);
+
 const mockedUserData = {
   name: 'Peixe Fresco',
   email: 'peixe.fresco@example.com',
@@ -14,10 +17,11 @@ const mockedUserData = {
 }
 
 describe('Authenticate Use Case', () => {
+  beforeEach(async () => {
+    usersRepository = new InMemoryUsersRepository();
+    sut = new AuthenticateUseCase(usersRepository);
+  })
   it('should be able to authenticate', async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticateUseCase(usersRepository);
-
     const { name, email, password } = mockedUserData;
 
     await usersRepository.create({
@@ -35,9 +39,6 @@ describe('Authenticate Use Case', () => {
   })
 
   it('should not be able to authenticate with wrong email', async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticateUseCase(usersRepository);
-
     const { name, email, password } = mockedUserData;
 
     await usersRepository.create({
@@ -53,9 +54,6 @@ describe('Authenticate Use Case', () => {
   })
 
   it('should not be able to authenticate with wrong password', async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticateUseCase(usersRepository);
-
     const { name, email, password } = mockedUserData;
 
     await usersRepository.create({
@@ -66,7 +64,7 @@ describe('Authenticate Use Case', () => {
 
     await expect(() => sut.execute({
       email,
-      password: password + 'wrong',
+      password: `${password}.wrong`,
     })).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 })

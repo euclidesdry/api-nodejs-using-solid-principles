@@ -7,10 +7,12 @@
     "controllers",
     "use-cases",
     "repositories",
-    "ci"
+    "ci",
+    "tests"
   ],
   "cSpell.words": ["fastify", "tsup"],
   "[prisma]": {
     "editor.formatOnSave": true
-  }
+  },
+  "editor.formatOnSave": true
 }
