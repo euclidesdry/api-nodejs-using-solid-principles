@@ -14,7 +14,7 @@ A GYM APP (API) with NodeJS Using Solid Principles
 - [x] Should be possible to search for the closest GYM's (up to 10km);
 - [x] Should be possible to search by GYM's name;
 - [x] Should be possible to check in a GYM;
-- [ ] Should be possible to validate a specific user check-in;
+- [x] Should be possible to validate a specific user check-in;
 - [x] Should be possible to create a GYM;
 
 ### BR (Business Rule)
@@ -22,7 +22,7 @@ A GYM APP (API) with NodeJS Using Solid Principles
 - [x] User should not create a GYM;
 - [x] User should not check-in twice (2 times) in the same day;
 - [x] User should not check in if he/she is not 100 meters near the GYM;
-- [ ] Check-in must be validated 20 minutes after being created only;
+- [x] Check-in must be validated 20 minutes after being created only;
 - [ ] Check-in must be validated by an Admin only;
 - [ ] GYM must be created by an Admin only;
 
