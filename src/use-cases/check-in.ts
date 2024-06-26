@@ -44,7 +44,7 @@ export class CheckInUseCase {
 
     if (distance > MAX_DISTANCE_IN_KILOMETERS) throw new MaxDistanceError()
 
-    const checkInOnSameDay = await this.checkInsRepository.findByUserIdOnGymId(
+    const checkInOnSameDay = await this.checkInsRepository.findByUserIdOnDate(
       userId,
       new Date()
     )
