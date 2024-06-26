@@ -1,15 +1,19 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from 'zod'
 
+import { makeGetUserProfileUseCase } from "~/use-cases/factories/make-get-user-profile-use-case";
+
 export async function profile(request: FastifyRequest, reply: FastifyReply) {
-  await request.jwtVerify()
+  const getUserProfileUseCase = makeGetUserProfileUseCase()
 
-  // const profileBodySchema = z.object({
-  //   name: z.string(),
-  //   email: z.string().email()
-  // })
+  const { user } = await getUserProfileUseCase.execute({
+    userId: request.user.sub
+  })
 
-  // const { name, email } = profileBodySchema.parse(request.body)
-
-  return reply.code(200).send()
+  return reply.code(200).send({
+    user: {
+      ...user,
+      password_hash: undefined
+    }
+  })
 }
