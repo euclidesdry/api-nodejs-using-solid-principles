@@ -23,12 +23,12 @@ A GYM APP (API) with NodeJS Using Solid Principles
 - [x] User should not check-in twice (2 times) in the same day;
 - [x] User should not check in if he/she is not 100 meters near the GYM;
 - [x] Check-in must be validated 20 minutes after being created only;
-- [ ] Check-in must be validated by an Admin only;
-- [ ] GYM must be created by an Admin only;
+- [x] Check-in must be validated by an Admin only;
+- [x] GYM must be created by an Admin only;
 
 ### NFR (Non-Functional Requirements)
 
 - [x] User password must be encrypted;
 - [x] App database must be persisted on a PostgreSQL database;
 - [x] All data lists (on the API) must be paginated with a 20 items page;
-- [ ] User must be identified by a JWT (token)
+- [x] User must be identified by a JWT (token)
