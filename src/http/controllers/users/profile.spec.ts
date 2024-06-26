@@ -3,13 +3,9 @@ import { afterAll, beforeAll, describe, expect, test } from "vitest"
 
 import { app } from '~/app'
 
-const mockedUserData = {
-  name: 'Peixe Fresco',
-  email: 'peixe.fresco@example.com',
-  password: '123456'
-}
+import { createAndAuthenticateUser, mockedUserData } from '~/utils/test/create-and-authenticate-user'
 
-describe('Profile (e2e)', () => {
+describe('Profile User (e2e)', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -19,14 +15,7 @@ describe('Profile (e2e)', () => {
   })
 
   test('should be able to get user profile', async () => {
-    await request(app.server).post('/users').send(mockedUserData)
-
-    const authResponse = await request(app.server).post('/sessions').send({
-      email: mockedUserData.email,
-      password: mockedUserData.password
-    })
-
-    const { token } = authResponse.body
+    const { token } = await createAndAuthenticateUser(app)
 
     const response = await request(app.server)
       .get('/me')

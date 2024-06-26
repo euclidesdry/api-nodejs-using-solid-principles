@@ -3,7 +3,7 @@ import { afterAll, beforeAll, describe, expect, test } from "vitest"
 
 import { app } from '~/app'
 
-describe('Register (e2e)', () => {
+describe('Register User (e2e)', () => {
   beforeAll(async () => {
     await app.ready()
   })
