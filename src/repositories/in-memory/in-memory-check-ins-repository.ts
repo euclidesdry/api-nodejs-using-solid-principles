@@ -11,7 +11,7 @@ export class InMemoryCheckInsRepository implements CheckInsRepository {
     return this.items.find(checkIn => checkIn.id === checkInId) || null
   }
 
-  async findByUserIdOnGymId(userId: string, date: Date) {
+  async findByUserIdOnDate(userId: string, date: Date) {
     const startOfTheDay = dayjs(date).startOf('date')
     const endOfTheDay = dayjs(date).endOf('date')
 
