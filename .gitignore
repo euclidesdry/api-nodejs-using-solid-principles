@@ -50,7 +50,6 @@ web_modules/
 
 # npm 
 build
-package-lock.json
 
 # Optional npm cache directory
 .npm
