@@ -10,12 +10,12 @@ jobs:
     services:
       postgres-db:
         image: bitnami/postgresql
+        env:
+          POSTGRESQL_USERNAME: dockerTest
+          POSTGRESQL_PASSWORD: dockerTest
+          POSTGRESQL_DATABASE: apisolidtest
         ports:
           - 5432:5432
-        environment:
-          - POSTGRESQL_USERNAME=dockerTest
-          - POSTGRESQL_PASSWORD=dockerTest
-          - POSTGRESQL_DATABASE=apisolidtest
 
     steps:
       - uses: actions/checkout@v4
